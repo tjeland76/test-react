@@ -9,6 +9,7 @@ import './styles/styles.css'; // Yep, that's right. You can import SASS/CSS file
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
+import './style.scss';
 
 const store = configureStore();
 render(
