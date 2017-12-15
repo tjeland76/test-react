@@ -52,7 +52,7 @@ class Header extends React.Component {
     return (
       <div className="header">
         <HeaderTop mediaLinksData={this.props.mediaLinksData} affiliateLinksData={this.props.affiliateLinksData}/>
-        <div className="navContainer" style={{display: this.state.showNav ? 'block' : 'none' }}>
+        <div className={"navContainer " + (this.state.showNav ? 'showMenu' : 'hideMenu')}>
           <div className="container">
             <Nav navData={this.props.navData} showNav={this.toggleNavDisplay} />
           </div>

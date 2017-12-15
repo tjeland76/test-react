@@ -26,5 +26,15 @@ class GoogleMapSnippet extends React.Component {
     );
   }
 }
+GoogleMapSnippet.propTypes = {
+    mapData: React.PropTypes.shape({
+        center: React.PropTypes.shape({
+            lat: React.PropTypes.number.isRequired,
+            lng: React.PropTypes.number.isRequired
+        })
+        }),
+    zoom: React.PropTypes.number.isRequired
+    
+};
 
 export default GoogleMapSnippet;

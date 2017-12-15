@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { trainingSessionData } from '../../services/trainingSessionData';
-import { newsData } from '../../services/newsData';
+import newsData from '../../services/newsData';
 import moment from 'moment';
 import GoogleMapComponent from '../map/GoogleMapComponent';
-import AnyReactComponent from '../map/AnyReactComponent';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import qwest from 'qwest';
 
 class HomeNewsPanel extends React.Component {
   constructor () {
@@ -18,38 +18,38 @@ class HomeNewsPanel extends React.Component {
   
   componentDidMount () {
     
-//     var that = this;
-//     var url = 'http://www.warringtonmasters.co.uk/api/newstop/2'
-
-//     fetch(url)
-//     .then(function(response) {
-//       if (response.status >= 400) {
-//         throw new Error("Bad response from server");
-//       }
-//       return response.json();
-//     })
-//     .then(function(data) {
-//       that.setState({ person: data.person });
-//     });
-
-    this.setState(
-      {
-        feedData: newsData
-      }
-    );
+      const url = '/newsfeed';
+      let self = this;
+        qwest.get(url, {
+                
+            }, {
+                cache: true
+            })
+            .then(function(xhr, resp) {
+                if(resp) {
+                    self.setState(
+                      {
+                        feedData: resp.newsData.reverse()
+                      }
+                    );    
+                }
+            });
+    
     twttr.widgets.load();
     
   }
+    goToNewsItem(id) {
+        alert(id);
+    }
     renderNewsItems(data) {
     const TopNewsItem = (props) => {
       const storyDate = moment(props.newsData.updated.substring(0, 10)).format('LL'); 
       return (
-          <div className="homeNewsItem">
+          <div className="homeNewsItem" onClick={(e) => this.goToNewsItem(props.newsData.id, e)}>
             <div className="homeNewsImage"><img src={props.newsData.image}/></div>
             <div className="homeNewsDetails">
               <h4>{props.newsData.title}</h4>
-              <h6>{storyDate}</h6>
-              <div className="homeNewsStory">{props.newsData.body}</div>
+              <div className="homeNewsStory" dangerouslySetInnerHTML={{__html: props.newsData.summary}}/>
               
             </div>
           </div>
@@ -68,7 +68,9 @@ class HomeNewsPanel extends React.Component {
   render() {
       
     const TopNewsItems = (props) => {
+        
       let newsItems = this.renderNewsItems(props.feedData);
+        
       return (
         <div>{newsItems}</div>
       );

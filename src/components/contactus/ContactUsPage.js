@@ -1,4 +1,6 @@
 import React from 'react';
+import { Control, Form, actions, Errors } from 'react-redux-form';
+import nodemailer from 'nodemailer';
 
 class ContactUsPage extends React.Component {
     
@@ -8,11 +10,12 @@ class ContactUsPage extends React.Component {
       name: '',
       email: '',
       message: '',
-      messageSent: false
+      messageSent: false      
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  
   }
 
   handleInputChange(event) {
@@ -25,14 +28,39 @@ class ContactUsPage extends React.Component {
     });
   }    
     
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({
-      messageSent: true
-    });
+  handleSubmit(user) {
+    //event.preventDefault();
+    console.log(user);  
+    fetch('/send-contact', { 
+        method: 'POST',
+        body: JSON.stringify({
+          "email": "tjeland76@gmail.com",
+          "name": "sdfsdf",
+          "message": "sdfsdfwW"
+        }),
+        headers: new Headers({ "Content-Type": "application/json" })
+      })
+      .then(function(response) {
+        console.log(response);
+        this.setState({
+            messageSent: true
+        });
+      }).then(function(body) {
+        console.log(body);
+      });  
+      
+    
   }
     
   render() {
+      
+    function emailIsValid(email) {
+    // terrible validation, I know
+        return email && email.length > 0;
+    }
+
+      // in the connected component's render() method...
+      const { dispatch, user } = this.props;
       
     const MessageSent = (props) => {
       return (
@@ -44,8 +72,11 @@ class ContactUsPage extends React.Component {
         <h2>Contact Us</h2>
 
         
-        <form className="form-horizontal" name="contactForm" role="form" onSubmit={this.handleSubmit}>
-
+        
+        <Form
+        model="user"
+        onSubmit={(user) => this.handleSubmit(user)} className="form-horizontal" name="contactForm" 
+      >
 
         <fieldset>
 
@@ -58,22 +89,46 @@ class ContactUsPage extends React.Component {
             <div className="form-group">
                 <label  className="col-sm-2 control-label">Name</label>
                 <div className="col-sm-7">
-                    <input id="name" name="name" className="form-control" placeholder="Your name" value={this.state.name} onChange={this.handleInputChange}/>
+                    <Control.text model="user.name" id="user.name" className="form-control" placeholder="Your name" required validateOn="blur" onChange={this.handleInputChange}/>
+                    <Errors
+                        className="errors"
+                        model="user.name"
+                        show="touched"
+                        messages={{
+                          valueMissing: 'Name is required'
+                        }}
+                    />
                 </div>
             </div>
 
             <div className="form-group" >
                 <label  className="col-sm-2 control-label">Email</label>
                 <div className="col-sm-7">
-                    <input id="email" type="email" name="email" className="form-control" placeholder="Your email address" value={this.state.email} onChange={this.handleInputChange}/>
+                    <Control.text model="user.email" id="user.email" className="form-control" placeholder="Your email" required validateOn="blur"/>
+                    <Errors
+                        className="errors"
+                        model="user.email"
+                        show="touched"
+                        messages={{
+                          valueMissing: 'Email is required',
+                          typeMismatch: 'Invalid email address'
+                        }}
+                    />
                 </div>
             </div>
 
             <div className="form-group" >
                 <label  className="col-sm-2 control-label">Message</label>
                 <div className="col-sm-7">
-                    <textarea className="form-control" placeholder="Your message" rows="6" id="message" value={this.state.message} onChange={this.handleInputChange}></textarea>
-
+                    <Control.textarea model="user.message" id="user.message" className="form-control" placeholder="Your message" rows="6" onChange={this.handleInputChange}  required validateOn="blur"/>
+                        <Errors
+                        className="errors"
+                        model="user.message"
+                        show="touched"
+                        messages={{
+                          valueMissing: 'Message is required'
+                        }}
+                        />
                 </div>
             </div>
 
@@ -87,7 +142,7 @@ class ContactUsPage extends React.Component {
             {this.state.messageSent ? <MessageSent /> : null}
 
         </fieldset>
-    </form>
+    </Form>
       </div>
     );
   }

@@ -30,15 +30,15 @@ const navData = [
   {
     title: 'Contact Us',
     route: '/contactus'
-  },
-    {
-    title: 'About - tut',
-    route: '/about'
-  },
-    {
-    title: 'Courses - tut',
-    route: '/courses'
   }
+//    {
+//    title: 'About - tut',
+//    route: '/about'
+//  },
+//    {
+//    title: 'Courses - tut',
+//    route: '/courses'
+//  }
 ];
 
 export {navData};

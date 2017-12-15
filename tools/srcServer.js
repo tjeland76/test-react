@@ -3,7 +3,10 @@ import webpack from 'webpack';
 import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
-
+import mailer from './mailer';
+import fs from 'fs';
+import newsData from '../src/services/newsData.js';
+import clone from 'clone';
 /* eslint-disable no-console */
 
 const port = 3000;
@@ -17,10 +20,68 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.get('/newsfeed', function(req, res){
+    
+    const startIndex = req.query.index,
+        pageSize = req.query.page_size,
+        newsCount = newsData.newsData.length;
+    let moreItems = true;
+    
+    if (startIndex) {
+        const newsArrayCopy = clone(newsData.newsData);
+        let newsArray = newsArrayCopy.reverse();
+        let endNewsItemIndex = parseInt(startIndex) + parseInt(pageSize);
+        
+        if (endNewsItemIndex > newsCount) {
+            endNewsItemIndex = newsCount;
+            moreItems = false;
+        }
+        
+        const newsSegment = newsArray.slice(parseInt(startIndex), endNewsItemIndex);
+        
+        const newsResponse = {
+          newsData: newsSegment,
+          index: endNewsItemIndex,
+          moreItems: moreItems
+        };
+        
+        res.send(newsResponse);
+    } else {
+        res.send(newsData);
+    }
+    
+    
+    
+    //
+//    fs.readFile('../src/components/services/newsData.json', 'utf8', function (err, data) {
+//        if (err) {
+//           // error handling 
+//            //res.end(err);
+//        }
+//        res.send('id: ' + req.query.id);   
+//        let obj = JSON.parse(data);
+//        res.end('Newsfeed get sent!!2');
+//    });
+    
+});
+
+app.post('/send-contact', (req, res) => {
+  //const { email = 'tjeland76@gmail.com', name = 'bob', message = 'message' } = req.body;
+  res.end('It worked!');
+  mailer({ email: "email", name: "name", text: "message" }).then(() => {
+    console.log(`Sent the message "${'message'}" from <${'name'}> ${'email'}.`);
+    res.redirect('/#success');
+  }).catch((error) => {
+    console.log(`Failed to send the message "${'message'}" from <${'name'}> ${'email'} with the error ${error && error.message}`);
+    res.redirect('/#error');
+  });
+    
+});
+
 app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
-
+    
 app.listen(port, function(err) {
   if (err) {
     console.log(err);

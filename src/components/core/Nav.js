@@ -33,7 +33,8 @@ Nav.propTypes = {
         route: React.PropTypes.string.isRequired
         })
     ),
-    cssClass: PropTypes.string
+    cssClass: PropTypes.string,
+    showNav: PropTypes.func
 };
         
 export default Nav;

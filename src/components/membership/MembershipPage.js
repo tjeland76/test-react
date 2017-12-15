@@ -21,7 +21,7 @@ class MembershipPage extends React.Component {
         <p>Members pay for pool time through other organisations such as LiveWire, therefore our membership fees are very reasonable! We don’t currently offer any ‘club-only’ training sessions - please see our Training page for further information</p>
 
         <p>
-            To join Warrington Masters please email us: <a href="mailto:hello@warringtonmasters.co.uk">hello@warringtonmasters.co.uk</a> requesting a membership form or alternatively click <a href="#/contact">here</a>.
+            To join Warrington Masters please email us: <a href="mailto:hello@warringtonmasters.co.uk">hello@warringtonmasters.co.uk</a> requesting a membership form or alternatively click <a href="/contactus">here</a>.
         </p>
 
         <p><b>ASA registration fees 2017</b></p>

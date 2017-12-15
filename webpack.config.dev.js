@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import path from 'path';
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 export default {
@@ -29,8 +29,16 @@ export default {
             allChunks: true
         })
     ],
+    node: {
+        fs: 'empty',
+        dns: 'empty',
+        tls: 'empty',
+        net: 'empty',
+        child_process: 'empty'
+    },
     module: {
         loaders: [
+            {test: /\.json$/, loader: 'json-loader'},
             {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
             {test: /(\.css)$/, loaders: ['style', 'css']},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},

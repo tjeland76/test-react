@@ -13,7 +13,8 @@ NavItem.propTypes = {
     link: PropTypes.shape({
       route: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired
-    })
+    }),
+    showNav: PropTypes.func
 };
 
 

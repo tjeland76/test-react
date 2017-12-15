@@ -8,7 +8,7 @@ class RecordsPage extends React.Component {
 
         <p><img src="http://res.cloudinary.com/tjeland/image/upload/v1509553792/WS.Swimnorthwest_c3ruex.jpg" alt="Swimnorthwest" width="360" height="203"/></p>
 
-        <p>Click <a target="_window" href="Documents/Warrington Masters Records.pdf">here</a> to view our club records.</p>
+        <p>Click <a target="_window" href="http://res.cloudinary.com/tjeland/raw/upload/v1509981969/records/Warrington_Masters_Records.pdf">here</a> to view our club records.</p>
 
         <p>Some of our swimmers have achieved British and European Masters records, and feature in the FINA World Rankings.</p>
 

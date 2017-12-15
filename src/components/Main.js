@@ -9,6 +9,7 @@ import Results from './results/ResultsPage';
 import ContactUs from './contactus/ContactUsPage';
 import About from './about/AboutPage';
 import Courses from './courses/CoursesPage';
+import News from './news/NewsPage';
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -20,7 +21,7 @@ const Main = () => (
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route path="/aboutus" component={AboutUs}/>
-      <Route path="/news" component={About}/>
+      <Route path="/news" component={News}/>
       <Route path="/membership" component={Membership}/>
       <Route path="/training" component={Training}/>
       <Route path="/records" component={Records}/>
