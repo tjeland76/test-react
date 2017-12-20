@@ -1,6 +1,7 @@
 import React from 'react';
 import { Control, Form, actions, Errors } from 'react-redux-form';
 import nodemailer from 'nodemailer';
+import PropTypes from 'prop-types';
 
 class ContactUsPage extends React.Component {
     
@@ -13,9 +14,11 @@ class ContactUsPage extends React.Component {
       messageSent: false      
     };
 
+    //const { dispatch, user } = this.props;
+     
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  
+    //this.handleSubmit = (user) => this.handleSubmit.bind(this, user);
+    
   }
 
   handleInputChange(event) {
@@ -28,55 +31,52 @@ class ContactUsPage extends React.Component {
     });
   }    
     
-  handleSubmit(user) {
-    //event.preventDefault();
-    console.log(user);  
-    fetch('/send-contact', { 
-        method: 'POST',
-        body: JSON.stringify({
-          "email": "tjeland76@gmail.com",
-          "name": "sdfsdf",
-          "message": "sdfsdfwW"
-        }),
-        headers: new Headers({ "Content-Type": "application/json" })
-      })
-      .then(function(response) {
-        console.log(response);
-        this.setState({
-            messageSent: true
-        });
-      }).then(function(body) {
-        console.log(body);
-      });  
+    handleSubmit(user) {
+            //event.preventDefault();
+            console.log(user);  
+//    fetch('/send-contact', { 
+//        method: 'POST',
+//        body: JSON.stringify({
+//          "email": "tjeland76@gmail.com",
+//          "name": "sdfsdf",
+//          "message": "sdfsdfwW"
+//        }),
+//        headers: new Headers({ "Content-Type": "application/json" })
+//      })
+//      .then(function(response) {
+//        console.log(response);
+//        this.setState({
+//            messageSent: true
+//        });
+//      }).then(function(body) {
+//        console.log(body);
+//      });  
       
     
-  }
-    
+    }
+ 
   render() {
       
-    function emailIsValid(email) {
-    // terrible validation, I know
-        return email && email.length > 0;
-    }
+        function emailIsValid(email) {
+            return email && email.length > 0;
+        }
 
-      // in the connected component's render() method...
-      const { dispatch, user } = this.props;
+        const { dispatch, user } = this.props;
+
+        const MessageSent = (props) => {
+            return (
+                <div className="alert alert-success col-sm-9">Thank you, we have received your message.</div> 
+            );
+        };
       
-    const MessageSent = (props) => {
-      return (
-         <div className="alert alert-success col-sm-9">Thank you, we have received your message.</div> 
-      );
-    };
+      
     return (
       <div className="container">
         <h2>Contact Us</h2>
 
         
         
-        <Form
-        model="user"
-        onSubmit={(user) => this.handleSubmit(user)} className="form-horizontal" name="contactForm" 
-      >
+        <Form model="user" onSubmit={(user) => this.handleSubmit(user)} className="form-horizontal" name="contactForm">
 
         <fieldset>
 
@@ -147,4 +147,8 @@ class ContactUsPage extends React.Component {
     );
   }
 }
+ContactUsPage.propTypes = {
+    dispatch: PropTypes.object,
+    user: PropTypes.object
+};
 export default ContactUsPage;

@@ -49,20 +49,25 @@ app.get('/newsfeed', function(req, res){
     } else {
         res.send(newsData);
     }
+        
+});
+
+app.get('/newsitem', function(req, res){
     
+    const newsId = req.query.id;
+    let newsItem = null;
     
+    if (newsId) {
+        const newsArrayCopy = clone(newsData.newsData);
+        newsItem = newsArrayCopy.find(x => x.id === parseInt(newsId));    
+    } 
     
-    //
-//    fs.readFile('../src/components/services/newsData.json', 'utf8', function (err, data) {
-//        if (err) {
-//           // error handling 
-//            //res.end(err);
-//        }
-//        res.send('id: ' + req.query.id);   
-//        let obj = JSON.parse(data);
-//        res.end('Newsfeed get sent!!2');
-//    });
-    
+    const newsResponse = {      
+        newsData: newsItem
+    };
+        
+    res.send(newsResponse);
+        
 });
 
 app.post('/send-contact', (req, res) => {

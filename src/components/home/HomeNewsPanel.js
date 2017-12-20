@@ -6,6 +6,7 @@ import moment from 'moment';
 import GoogleMapComponent from '../map/GoogleMapComponent';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import qwest from 'qwest';
+import { withRouter } from 'react-router';
 
 class HomeNewsPanel extends React.Component {
   constructor () {
@@ -16,10 +17,10 @@ class HomeNewsPanel extends React.Component {
     this.trainingSessionData = trainingSessionData;
   }
   
-  componentDidMount () {
+    componentDidMount () {
     
-      const url = '/newsfeed';
-      let self = this;
+        const url = '/newsfeed';
+        let self = this;
         qwest.get(url, {
                 
             }, {
@@ -35,12 +36,14 @@ class HomeNewsPanel extends React.Component {
                 }
             });
     
-    twttr.widgets.load();
+        twttr.widgets.load();
     
-  }
-    goToNewsItem(id) {
-        alert(id);
     }
+    
+    goToNewsItem(id) {
+        this.props.history.push('/news/?id=' + id); // for react-router@3 it would be this.props.router.push('/some/location');
+    }
+    
     renderNewsItems(data) {
     const TopNewsItem = (props) => {
       const storyDate = moment(props.newsData.updated.substring(0, 10)).format('LL'); 
@@ -146,4 +149,8 @@ class HomeNewsPanel extends React.Component {
   }
 }
 
-export default HomeNewsPanel;
+HomeNewsPanel.propTypes = {
+    history: PropTypes.object
+};
+
+export default withRouter(HomeNewsPanel);

@@ -46,6 +46,11 @@ body {
   line-height:25px;
 }
 
+a{
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
 h4 {
   line-height: $headline-height;
 }
@@ -119,7 +124,7 @@ h4 {
     float:left;
     display:table;
     vertical-align:middle;
-    border-spacing: 15px 0;
+    border-spacing: 5px 0;
     height:$header-top-height-small;
     cursor:pointer;
     .menu {
@@ -128,9 +133,9 @@ h4 {
       padding-top:6px;
       width:44px;
       div {
-        margin-bottom:6px;  
+        margin-bottom:5px;  
         background-color:#ccc;  
-        height:6px;
+        height:5px;
         @include border-radius(5px);
       }
       
@@ -347,8 +352,8 @@ nav {
     .newsImage {
         padding-bottom:20px;
         img {
-            height: 210px;
-            width: auto;
+            height: auto;
+            width: 100%;
         }
     }
     .newsBody {
@@ -492,6 +497,16 @@ nav {
       }
     }
   }
+    
+    .newsItem {
+        .newsImage {
+            img {
+                height: 210px;
+                width: auto;
+            }
+        }
+    }
+
   .affiliateLinks {
     .swim21 {
       width:62px;
