@@ -2,5 +2,5 @@
   "presets": [
     "es2015", "stage-0", "react"
   ],
-  "plugins": ["babel-plugin-transform-es2015-destructuring", ["transform-object-rest-spread", { "useBuiltIns": true }]]
+  "plugins": [["transform-object-rest-spread", { "useBuiltIns": true }]]
 }
