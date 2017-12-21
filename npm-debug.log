@@ -1,5 +1,5 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'run', 'start' ]
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
 2 info using npm@3.10.10
 3 info using node@v6.9.4
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
@@ -30,7 +30,7 @@
 19 verbose pkgid pluralsight-redux-starter@1.0.0
 20 verbose cwd /Users/trevoreland/WebstormProjects/test-react
 21 error Darwin 16.7.0
-22 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "start"
+22 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
 23 error node v6.9.4
 24 error npm  v3.10.10
 25 error code ELIFECYCLE
