@@ -16,13 +16,13 @@ class HomeNewsPanel extends React.Component {
     };
     this.trainingSessionData = trainingSessionData;
   }
-  
+
     componentDidMount () {
-    
+
         const url = '/newsfeed';
         let self = this;
         qwest.get(url, {
-                
+
             }, {
                 cache: true
             })
@@ -32,34 +32,34 @@ class HomeNewsPanel extends React.Component {
                       {
                         feedData: resp.newsData.reverse()
                       }
-                    );    
+                    );
                 }
             });
-    
+
         twttr.widgets.load();
-    
+
     }
-    
+
     goToNewsItem(id) {
         this.props.history.push('/news/?id=' + id); // for react-router@3 it would be this.props.router.push('/some/location');
     }
-    
+
     renderNewsItems(data) {
     const TopNewsItem = (props) => {
-      const storyDate = moment(props.newsData.updated.substring(0, 10)).format('LL'); 
+      const storyDate = moment(props.newsData.updated.substring(0, 10)).format('LL');
       return (
           <div className="homeNewsItem" onClick={(e) => this.goToNewsItem(props.newsData.id, e)}>
             <div className="homeNewsImage"><img src={props.newsData.image}/></div>
             <div className="homeNewsDetails">
               <h4>{props.newsData.title}</h4>
               <div className="homeNewsStory" dangerouslySetInnerHTML={{__html: props.newsData.summary}}/>
-              
+
             </div>
           </div>
         );
       };
-    
-      if (data && data.length > 0) { 
+
+      if (data && data.length > 0) {
         return data.filter(data => data.showHomepage === true)
                 .map((data, index) => (
             <TopNewsItem key={index} newsData={data} />
@@ -67,19 +67,19 @@ class HomeNewsPanel extends React.Component {
       }
       else return [];
   }
-    
+
   render() {
-      
+
     const TopNewsItems = (props) => {
-        
+
       let newsItems = this.renderNewsItems(props.feedData);
-        
+
       return (
         <div>{newsItems}</div>
       );
     };
-      
-      
+
+
     //<GoogleMapComponent mapData={nextSession.map}/>
     const MyMapComponent = withScriptjs(withGoogleMap((props) =>
       <GoogleMap
@@ -89,13 +89,13 @@ class HomeNewsPanel extends React.Component {
         {props.isMarkerShown && <Marker position={{ lat: props.mapData.center.lat, lng: props.mapData.center.lng }} />}
       </GoogleMap>
     ));
-    
+
     const NextSession = (props) => {
-      
-      const trainingSessionData = this.trainingSessionData;        
+
+      const trainingSessionData = this.trainingSessionData;
       const today = new Date();
       const dayIndex = today.getDay();
-      
+
       let nextSession = trainingSessionData.filter(function (session) {
         return session.day >= dayIndex;
       });
@@ -117,11 +117,11 @@ class HomeNewsPanel extends React.Component {
             <div><a href="/training">View all sessions</a></div>
           </div>
           <div className="nextSessionMap">
-            
+
           <MyMapComponent
               isMarkerShown
               mapData={nextSession.map}
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBiBnuo2x2PQq8DDTnQJligz-4BfIDsIVw&libraries=geometry,drawing,places"
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
@@ -130,7 +130,7 @@ class HomeNewsPanel extends React.Component {
         </div>
         );
       };
-    
+
     return (
       <div className="container">
         <div className="homeInfoPanel">
