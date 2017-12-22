@@ -32,25 +32,24 @@ class ContactUsPage extends React.Component {
   }    
     
     handleSubmit(user) {
-            //event.preventDefault();
-            console.log(user);  
-//    fetch('/send-contact', { 
-//        method: 'POST',
-//        body: JSON.stringify({
-//          "email": "tjeland76@gmail.com",
-//          "name": "sdfsdf",
-//          "message": "sdfsdfwW"
-//        }),
-//        headers: new Headers({ "Content-Type": "application/json" })
-//      })
-//      .then(function(response) {
-//        console.log(response);
-//        this.setState({
-//            messageSent: true
-//        });
-//      }).then(function(body) {
-//        console.log(body);
-//      });  
+        let self = this;
+    fetch('/send-contact', { 
+        method: 'POST',
+        body: JSON.stringify({
+          "email": "tjeland76@gmail.com",
+          "name": "sdfsdf",
+          "message": "sdfsdfwW"
+        }),
+        headers: new Headers({ "Content-Type": "application/json" })
+      })
+      .then(function(response) {
+        console.log(response);
+        self.setState({
+            messageSent: true
+        });
+      }).then(function(body) {
+        console.log(body);
+      });  
       
     
     }
