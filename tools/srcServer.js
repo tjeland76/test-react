@@ -72,12 +72,13 @@ app.get('/newsitem', function(req, res){
 
 app.post('/send-contact', (req, res) => {
   //const { email = 'tjeland76@gmail.com', name = 'bob', message = 'message' } = req.body;
+  
   mailer({ email: "email", name: "name", text: "message" }).then(() => {
     console.log(`Sent the message "${'message'}" from <${'name'}> ${'email'}.`);
-    res.redirect('/#success');
+    res.end('It worked!');
   }).catch((error) => {
     console.log(`Failed to send the message "${'message'}" from <${'name'}> ${'email'} with the error ${error && error.message}`);
-    res.redirect('/#error');
+    res.end('It failed');
   });
 
 });
