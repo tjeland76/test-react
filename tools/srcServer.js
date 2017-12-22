@@ -72,7 +72,6 @@ app.get('/newsitem', function(req, res){
 
 app.post('/send-contact', (req, res) => {
   //const { email = 'tjeland76@gmail.com', name = 'bob', message = 'message' } = req.body;
-  res.end('It worked!');
   mailer({ email: "email", name: "name", text: "message" }).then(() => {
     console.log(`Sent the message "${'message'}" from <${'name'}> ${'email'}.`);
     res.redirect('/#success');
