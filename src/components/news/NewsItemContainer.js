@@ -58,11 +58,14 @@ class NewsItemContainer extends Component {
         let newsItem = this.state.item;
         const storyDate = moment(newsItem.updated.substring(0, 10)).format('LL');
         return (
-            <div className="newsItem">
-                <div className="newsTitle">{newsItem.title}</div>
-                <div className="newsDate">{storyDate}</div>
-                <div className="newsImage" style={{display: newsItem.image ? 'block' : 'none' }}><img src={newsItem.image} /></div>
-                <div className="newsBody" dangerouslySetInnerHTML={{__html: newsItem.body}}/>
+            <div>
+                <div className="newsItem">
+                    <div className="newsTitle">{newsItem.title}</div>
+                    <div className="newsDate">{storyDate}</div>
+                    <div className="newsImage" style={{display: newsItem.image ? 'block' : 'none' }}><img src={newsItem.image} /></div>
+                    <div className="newsBody" dangerouslySetInnerHTML={{__html: newsItem.body}}/>
+                </div>
+                <a href="/news/" className="newsLinkButton">Latest news</a>
             </div>
         );
     }
