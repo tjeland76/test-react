@@ -24,9 +24,15 @@ const send = ({ email, name, text }) => {
   };
 
   return new Promise((resolve, reject) => {
-    transporter.sendMail(message, (error, info) =>
-      error ? reject(error) : resolve(info)
-    );
+    transporter.sendMail(message, (error, info) => {
+        if (error) {
+            console.log(error);
+            reject(error);
+        } else {
+            resolve(info);
+        }
+      
+    });
   });
 };
 
