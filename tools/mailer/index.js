@@ -17,9 +17,10 @@ import config from './config';
 //});
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+  //host: 'smtp.gmail.com',
+  service: 'gmail',
+  //port: 465,
+  //secure: true,
   auth: {
     type: 'OAuth2',
     user: config.user,
@@ -34,11 +35,10 @@ const transporter = nodemailer.createTransport({
 const send = ({ email, name, text }) => {
   const from = name && email ? `${name} <${email}>` : `${name || email}`;
   const message = {
-    from,
+    from: email,
     to: 'tjeland76@gmail.com',
     subject: `New message from ${from} at creating-contact-forms-with-nodemailer-and-react`,
-    text,
-    replyTo: from
+    text
   };
 
   return new Promise((resolve, reject) => {
