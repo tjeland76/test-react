@@ -23,7 +23,11 @@ const transporter = nodemailer.createTransport({
   auth: {
     type: 'OAuth2',
     user: config.user,
-    accessToken: config.accessToken
+    clientId: config.clientId,
+    clientSecret: config.clientSecret,
+    refreshToken: config.refreshToken,
+    accessToken: config.accessToken,
+    expires: 1484314697598
   }
 });
 
