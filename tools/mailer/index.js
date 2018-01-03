@@ -1,17 +1,28 @@
 import nodemailer from 'nodemailer';
 import config from './config';
 
+//const transporter = nodemailer.createTransport({
+//  service: 'Gmail',
+//  host: 'smtp.gmail.com',
+//  port: 465,
+//  secure: true,
+//  auth: {
+//    type: 'OAuth2',
+//    user: config.user,
+//    clientId: config.clientId,
+//    clientSecret: config.clientSecret,
+//    refreshToken: config.refreshToken,
+//    accessToken: config.accessToken
+//  }
+//});
+
 const transporter = nodemailer.createTransport({
-  service: 'Gmail',
   host: 'smtp.gmail.com',
   port: 465,
   secure: true,
   auth: {
     type: 'OAuth2',
     user: config.user,
-    clientId: config.clientId,
-    clientSecret: config.clientSecret,
-    refreshToken: config.refreshToken,
     accessToken: config.accessToken
   }
 });
