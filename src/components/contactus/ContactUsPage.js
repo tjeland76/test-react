@@ -40,7 +40,7 @@ class ContactUsPage extends React.Component {
           "name": "sdfsdf",
           "message": "sdfsdfwW"
         }),
-        headers: new Headers({ "Content-Type": "application/json" })
+        headers: new Headers({ "Content-Type": "application/x-www-form-urlencoded" })
       })
       .then(function(response) {
         console.log(response);
