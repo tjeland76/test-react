@@ -18,28 +18,26 @@ import config from './config';
 
 const transporter = nodemailer.createTransport({
   //host: 'smtp.gmail.com',
-  service: 'gmail',
+  service: 'Gmail',
   //port: 465,
   //secure: true,
   auth: {
     type: 'OAuth2',
     user: config.user,
-    clientId: config.clientId,
-    clientSecret: config.clientSecret,
-    refreshToken: config.refreshToken,
-    accessToken: config.accessToken,
-    expires: 1484314697598
+    ...config
   }
 });
 
 const send = ({ email, name, text }) => {
-  const from = name && email ? `${name} <${email}>` : `${name || email}`;
+
   const message = {
     from: email,
     to: 'tjeland76@gmail.com',
-    subject: `New message from ${from} at creating-contact-forms-with-nodemailer-and-react`,
+    subject: `New message from ${name} on wmsc.co.uk`,
     text
   };
+
+  console.log(message);
 
   return new Promise((resolve, reject) => {
     transporter.sendMail(message, (error, info) => {
@@ -49,7 +47,7 @@ const send = ({ email, name, text }) => {
         } else {
             resolve(info);
         }
-      
+
     });
   });
 };

@@ -71,8 +71,8 @@ app.get('/newsitem', function(req, res){
 });
 
 app.post('/send-contact', (req, res) => {
-  //const { email = 'tjeland76@gmail.com', name = 'bob', message = 'message' } = req.body;
-  
+  //const { email, name, message } = req.body;
+  //console.log(email);
   mailer({ email: "email", name: "name", text: "message" }).then(() => {
     console.log(`Sent the message "${'message'}" from <${'name'}> ${'email'}.`);
     res.end('It worked!');

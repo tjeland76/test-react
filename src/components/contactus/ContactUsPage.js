@@ -4,21 +4,21 @@ import nodemailer from 'nodemailer';
 import PropTypes from 'prop-types';
 
 class ContactUsPage extends React.Component {
-    
+
  constructor(props) {
     super(props);
     this.state = {
       name: '',
       email: '',
       message: '',
-      messageSent: false      
+      messageSent: false
     };
 
     //const { dispatch, user } = this.props;
-     
+
     this.handleInputChange = this.handleInputChange.bind(this);
     //this.handleSubmit = (user) => this.handleSubmit.bind(this, user);
-    
+
   }
 
   handleInputChange(event) {
@@ -29,16 +29,17 @@ class ContactUsPage extends React.Component {
     this.setState({
       [name]: value
     });
-  }    
-    
+  }
+
     handleSubmit(user) {
+
         let self = this;
-    fetch('/send-contact', { 
+    fetch('/send-contact', {
         method: 'POST',
         body: JSON.stringify({
-          "email": "tjeland76@gmail.com",
-          "name": "sdfsdf",
-          "message": "sdfsdfwW"
+          "email": user.email,
+          "name": user.name,
+          "message": user.message
         }),
         headers: new Headers({ "Content-Type": "application/x-www-form-urlencoded" })
       })
@@ -49,13 +50,13 @@ class ContactUsPage extends React.Component {
         });
       }).then(function(body) {
         console.log(body);
-      });  
-      
-    
+      });
+
+
     }
- 
+
   render() {
-      
+
         function emailIsValid(email) {
             return email && email.length > 0;
         }
@@ -64,17 +65,17 @@ class ContactUsPage extends React.Component {
 
         const MessageSent = (props) => {
             return (
-                <div className="alert alert-success col-sm-9">Thank you, we have received your message.</div> 
+                <div className="alert alert-success col-sm-9">Thank you, we have received your message.</div>
             );
         };
-      
-      
+
+
     return (
       <div className="container">
         <h2>Contact Us</h2>
 
-        
-        
+
+
         <Form model="user" onSubmit={(user) => this.handleSubmit(user)} className="form-horizontal" name="contactForm">
 
         <fieldset>
