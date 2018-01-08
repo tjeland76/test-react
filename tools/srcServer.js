@@ -7,6 +7,7 @@ import mailer from './mailer';
 import fs from 'fs';
 import newsData from '../src/services/newsData.js';
 import clone from 'clone';
+import bodyParser from 'body-parser';
 /* eslint-disable no-console */
 
 const port = process.env.PORT || 5000;
@@ -19,6 +20,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
+
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 app.get('/newsfeed', function(req, res){
 
@@ -70,16 +76,41 @@ app.get('/newsitem', function(req, res){
 
 });
 
-app.post('/send-contact', (req, res) => {
-  //const { email, name, message } = req.body;
-  //console.log(email);
-  mailer({ email: "email", name: "name", text: "message" }).then(() => {
-    console.log(`Sent the message "${'message'}" from <${'name'}> ${'email'}.`);
-    res.end('It worked!');
-  }).catch((error) => {
-    console.log(`Failed to send the message "${'message'}" from <${'name'}> ${'email'} with the error ${error && error.message}`);
-    res.end('It failed');
-  });
+app.post('/send-contact', urlencodedParser, (req, res) => {
+    
+    if (!req.body) return res.sendStatus(400);
+    else {
+        for(let form in req.body){
+            let data = JSON.parse(form);
+            mailer({ email: data.email, name: data.name, text: data.message }).then(() => {
+                console.log(`Sent the message "${data.message}" from <${data.name}> ${data.email}.`);
+                res.end('It worked!');
+            }).catch((error) => {
+                console.log(`Failed to send the message "${data.message}" from <${data.name}> ${data.email} with the error ${error && error.message}`);
+                res.end('It failed');
+            });
+            
+//            let data = {
+//                email: req.body[form]["email"],
+//                name: req.body[form]["name"],
+//                message: req.body[form]["message"]
+//            };
+            
+//            let data = {
+//                R:Number(req.body[datapoint]["x"]),
+//                Y:Number(req.body[datapoint]["y"]),
+//                Orientation:Number(req.body[datapoint]["orientation"]),
+//                Time:req.body[datapoint]["timestamp"],
+//                UserID:req.body[datapoint]["id"]
+//            };
+//            //insert the newly constructed document into the database
+//            point.save(function(err, point){
+//                if(err) return console.error(err);
+//                else console.dir(point);
+//            });
+        }
+    }
+
 
 });
 
