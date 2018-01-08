@@ -121,7 +121,7 @@ class HomeNewsPanel extends React.Component {
           <MyMapComponent
               isMarkerShown
               mapData={nextSession.map}
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBiBnuo2x2PQq8DDTnQJligz-4BfIDsIVw&libraries=geometry,drawing,places"
+              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDADYT_mPIXLDxMge3jzw0f7PnwTfo0aI4&libraries=geometry,drawing,places"
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}

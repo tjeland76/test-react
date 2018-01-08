@@ -32,7 +32,7 @@ const send = ({ email, name, text }) => {
 
   const message = {
     from: email,
-    to: 'tjeland76@gmail.com',
+    to: 'warringtonmasters@gmail.com',
     subject: `New message from ${name} on wmsc.co.uk`,
     text
   };
