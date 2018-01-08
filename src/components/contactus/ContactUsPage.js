@@ -51,6 +51,9 @@ class ContactUsPage extends React.Component {
           }).then(function(body) {
             console.log(body);
         }).catch(function(err) {
+            self.setState({
+                messageSent: false
+            });
             console.log(err);
         });
 

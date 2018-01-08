@@ -466,7 +466,37 @@ const newsData = [{
         body: '<p>Warrington Masters swimmers had a massive medal haul of 10 golds, 11 silvers and 8 bronze, claiming a new European Record in the men’s 4x 200m freestyle team, and a new British Record in the women’s 100m backstroke. Pride of place goes to our superb men’s 200+ relay. The team of Russ, Mark, Andrew and Chris swam brilliantly to not only smash the British record, but also take 3 seconds off the European mark. Huge congratulations to the team on this fantastic achievement!</p><p>In addition, Chris added to his medal tally further by winning a hat-trick of individual golds in the 200m freestyle, 200m backstroke and 400m freestyle events. Judy also had a really successful meet, taking the British Record in the 100m backstroke with an excellent swim of 1:11.64. As well as this, she won 3 further golds in the 400m Individual Medley, 200m backstroke and 200m Individual Medley events. Competing in seven individual races over the week-end, she also won silver medals for 200m freestyle and 200m butterfly, and a bronze for 800m freestyle. Mark added to his relay gold with a fine win in the 1500m event. He followed this up with silvers in the 800m and 400m freestyle and a bronze in the 400m Individual Medley event. In addition to his 2 relay golds, Russ won two silvers - for 100m backstroke and 50m breaststroke, and 3 bronze - for 100m freestyle, 50m backstroke and 100m Individual Medley. An excellent performance, particularly at the top end of the age group.</p><p>Trev took on three 50m sprint events to claim a silver in each, and Jackie had 3 fine swims in the 200m breaststroke, 800m freestyle and 1500m freestyle to claim a silver and 2 bronze. We also enjoyed further medal success in two relay events when the mixed medley team of Judy, Jackie, Graeme and Phil took the silver medal, and the mens medley team of Chris, Russ, Graeme and Phil took the bronze. In addition to his relay success, Andrew swam 2 pbs for 50m and 100m freestyle, the 50m swim earning him a new club record of 26.14, and Graeme had 3 strong swims in a very competitive age group. Gerry, at the top end of his age group, produced a season’s best swim to claim 5th place in the 200m butterfly, and Lauren claimed four Warrington Masters records which will undoubtedly stand her in good stead for the National para swimming Championships later on in the year. Phil swam a new club record in the 800m, and was unlucky to finish 0.7 of a second behind the silver medallist and .02 behind the bronze. Next year’s change of age group has surely got to bring a change of fortune!</p><p>Altogether, our swimmers broke 26 club records – over 50% of all the swims. Congratulations to all on such a brilliant team performance, and many thanks to Jonathan, Paul and Tommi for all the coaching.Full results at <a href="http://swimmingresults.org.uk/masters/results/2017/semas17/">here</a></p>',
       updated: '2017-10-29T00:00:00',
       showHomepage: true
-    }
+    },
+    {
+      id: 58,
+      title: 'Etwall Eagles Masters',
+      body: 'Congratulations to our team of swimmers that won 12 golds, 9 silvers and 4 bronze at the Etwall Eagles Masters Meet. Finishing top of his age group after swimming 3 new club records, Graham took 5 golds from his 5 swims. In addition, he won the ‘record breaker’ trophy for the swimmer that beats the previous meet record by the greatest margin. Mark won 2 golds, 4 silvers and 2 bronze out of an incredible 13 events to win the overall prize in his age group, and Derek continued his fine return to form with 4 golds, 1 silver and 1 bronze from his 6 swims. Andrew swam a great 100m free to take the gold, and followed this up with 3 silvers and a bronze in the four 25m events, whilst Matt swam well to win a silver and achieved two one-year pbs.',
+      updated: '2017-10-29T00:00:00'
+    },
+    {
+      id: 59,
+      title: 'South Yorkshire Masters',
+      body: 'Warrington Masters swimmers won 17 golds, 5 silvers and 4 bronze in a fine team performance at the South Yorkshire Masters in Sheffield. Showing no signs of weariness following his 1500m victory the previous day, Mark won 1 gold, 3 silvers and 3 bronze, swimming a season’s best in 7 out of his 11 races. Russ won 3 golds and a silver, including swimming an excellent 1:12.44 for the 100m breaststroke. Pat won all 9 of her races, setting a new club record in the 100m breaststroke. Carolyn earned a gold and a bronze for her 50m breaststroke and freestyle swims respectively, whilst Judy won 3 golds and a silver, setting 3 season’s best times. Many thanks to Phil Johnston for organising a well-run and well- attended gala.',
+      updated: '2017-10-29T00:00:00'
+    },
+    {
+      id: 60,
+      title: 'Howe Bridge Marlins 1500m',
+      body: 'Congratulations to Mark Jones on winning the Howe Bridge Marlins 1500m. Mark won the event for the sixth year in a row with a time of 19:48.00.',
+      updated: '2017-10-29T00:00:00'
+    },
+    {
+      id: 61,
+      title: 'Hull Masters',
+      body: 'Pat and Mark completed their competitive year’s swimming in fine style with 8 gold medals and 5 golds respectively at the Hull Masters event',
+      updated: '2017-12-03T00:00:00'
+    },
+    {
+      id: 62,
+      title: 'National Para-Swimming Disability Championships',
+      body: 'Congratulations to Lauren Sanders on her 5 top-6 finishes in her category (S7) at the National Para-Swimming Championships. Unlucky not to win a medal, Lauren claimed three 4th places for 400m freestyle, 50m freestyle and 100m breaststroke.',
+      updated: '2017-12-09T00:00:00'
+    }                  
 ];
 
 export default {newsData};
