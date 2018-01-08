@@ -34,24 +34,25 @@ class ContactUsPage extends React.Component {
     handleSubmit(user) {
 
         let self = this;
-    fetch('/send-contact', {
-        method: 'POST',
-        body: JSON.stringify({
-          "email": user.email,
-          "name": user.name,
-          "message": user.message
-        }),
-        headers: new Headers({ "Content-Type": "application/x-www-form-urlencoded" })
-      })
-      .then(function(response) {
-        console.log(response);
-        self.setState({
-            messageSent: true
+        fetch('/send-contact', {
+            method: 'POST',
+            body: JSON.stringify({
+              "email": user.email,
+              "name": user.name,
+              "message": user.message
+            }),
+            headers: new Headers({ "Content-Type": "application/x-www-form-urlencoded" })
+          })
+          .then(function(response) {
+            console.log(response);
+            self.setState({
+                messageSent: true
+            });
+          }).then(function(body) {
+            console.log(body);
+        }).catch(function(err) {
+            console.log(err);
         });
-      }).then(function(body) {
-        console.log(body);
-      });
-
 
     }
 
@@ -73,8 +74,6 @@ class ContactUsPage extends React.Component {
     return (
       <div className="container">
         <h2>Contact Us</h2>
-
-
 
         <Form model="user" onSubmit={(user) => this.handleSubmit(user)} className="form-horizontal" name="contactForm">
 

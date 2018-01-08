@@ -84,33 +84,16 @@ app.post('/send-contact', urlencodedParser, (req, res) => {
             let data = JSON.parse(form);
             mailer({ email: data.email, name: data.name, text: data.message }).then(() => {
                 console.log(`Sent the message "${data.message}" from <${data.name}> ${data.email}.`);
-                res.end('It worked!');
+                //res.end('It worked!');
+                res.sendStatus(200);
             }).catch((error) => {
                 console.log(`Failed to send the message "${data.message}" from <${data.name}> ${data.email} with the error ${error && error.message}`);
-                res.end('It failed');
+                res.sendStatus(400);
+                //res.end('It failed');
             });
             
-//            let data = {
-//                email: req.body[form]["email"],
-//                name: req.body[form]["name"],
-//                message: req.body[form]["message"]
-//            };
-            
-//            let data = {
-//                R:Number(req.body[datapoint]["x"]),
-//                Y:Number(req.body[datapoint]["y"]),
-//                Orientation:Number(req.body[datapoint]["orientation"]),
-//                Time:req.body[datapoint]["timestamp"],
-//                UserID:req.body[datapoint]["id"]
-//            };
-//            //insert the newly constructed document into the database
-//            point.save(function(err, point){
-//                if(err) return console.error(err);
-//                else console.dir(point);
-//            });
         }
     }
-
 
 });
 
