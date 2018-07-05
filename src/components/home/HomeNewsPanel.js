@@ -22,7 +22,7 @@ class HomeNewsPanel extends React.Component {
         const url = '/newsfeed';
         let self = this;
         qwest.get(url, {
-
+          showHomepage: true
             }, {
                 cache: true
             })
@@ -30,7 +30,7 @@ class HomeNewsPanel extends React.Component {
                 if(resp) {
                     self.setState(
                       {
-                        feedData: resp.newsData.reverse()
+                        feedData: resp.data
                       }
                     );
                 }
@@ -46,13 +46,13 @@ class HomeNewsPanel extends React.Component {
 
     renderNewsItems(data) {
     const TopNewsItem = (props) => {
-      const storyDate = moment(props.newsData.updated.substring(0, 10)).format('LL');
+      const storyDate = moment(props.newsData.attributes.date.substring(0, 10)).format('LL');
       return (
           <div className="homeNewsItem" onClick={(e) => this.goToNewsItem(props.newsData.id, e)}>
-            <div className="homeNewsImage"><img src={props.newsData.image}/></div>
+            <div className="homeNewsImage"><img src={props.newsData.attributes.image.url}/></div>
             <div className="homeNewsDetails">
-              <h4>{props.newsData.title}</h4>
-              <div className="homeNewsStory" dangerouslySetInnerHTML={{__html: props.newsData.summary}}/>
+              <h4>{props.newsData.attributes.title}</h4>
+              <div className="homeNewsStory" dangerouslySetInnerHTML={{__html: props.newsData.attributes.teaser}}/>
 
             </div>
           </div>
@@ -60,8 +60,7 @@ class HomeNewsPanel extends React.Component {
       };
 
       if (data && data.length > 0) {
-        return data.filter(data => data.showHomepage === true)
-                .map((data, index) => (
+        return data.map((data, index) => (
             <TopNewsItem key={index} newsData={data} />
         ));
       }
@@ -71,7 +70,6 @@ class HomeNewsPanel extends React.Component {
   render() {
 
     const TopNewsItems = (props) => {
-
       let newsItems = this.renderNewsItems(props.feedData);
 
       return (

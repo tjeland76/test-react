@@ -17,15 +17,19 @@ class InfiniteScrollerContainer extends Component {
         this.state = {
             tracks: [],
             hasMoreItems: true,
-            index: 0
+            index: 1
         };
-        
+
         this.loadItems = this.loadItems.bind(this);
     }
 
     loadItems(page) {
         let self = this;
-        
+
+        if (!self.state.hasMoreItems) {
+          return;
+        }
+
         qwest.get(api.baseUrl, {
               index:  self.state.index,
               page_size: api.page_size
@@ -33,16 +37,20 @@ class InfiniteScrollerContainer extends Component {
                 cache: true
             })
             .then(function(xhr, resp) {
+              console.log(resp);
                 if(resp) {
                     let tracks = self.state.tracks;
-                    resp.newsData.map((track) => {
+                    let moreItems = false;
+                    resp.data.map((track) => {
                         tracks.push(track);
                     });
 
-                    if(resp.moreItems) {
+                    moreItems = (self.state.index * api.page_size) < resp.meta.total;
+
+                    if(moreItems) {
                         self.setState({
                             tracks: tracks,
-                            index: resp.index
+                            index: self.state.index + 1
                         });
                     } else {
                         self.setState({
@@ -59,13 +67,13 @@ class InfiniteScrollerContainer extends Component {
 
         let items = [];
         this.state.tracks.map((track, i) => {
-            const storyDate = moment(track.updated.substring(0, 10)).format('LL'); 
+            const storyDate = moment(track.attributes.date.substring(0, 10)).format('LL');
             items.push(
                 <div className="newsItem" key={i}>
-                    <div className="newsTitle">{track.title}</div>
+                    <div className="newsTitle">{track.attributes.title}</div>
                     <div className="newsDate">{storyDate}</div>
-                    <div className="newsImage" style={{display: track.image ? 'block' : 'none' }}><img src={track.image} /></div>
-                    <div className="newsBody" dangerouslySetInnerHTML={{__html: track.body}}/>
+                    <div className="newsImage" style={{display: track.attributes.image.url ? 'block' : 'none' }}><img src={track.attributes.image.url} /></div>
+                    <div className="newsBody" dangerouslySetInnerHTML={{__html: track.attributes.body}}/>
                 </div>
             );
         });
