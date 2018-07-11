@@ -65,7 +65,7 @@ class NewsItemContainer extends Component {
                     <div className="newsImage" style={{display: newsItem.attributes.image.url ? 'block' : 'none' }}><img src={newsItem.attributes.image.url} /></div>
                     <div className="newsBody" dangerouslySetInnerHTML={{__html: newsItem.attributes.body}}/>
                 </div>
-                <a href="/news/" className="newsLinkButton">Latest news</a>
+                <a href="/news" className="newsLinkButton">Latest news</a>
             </div>
         );
     }
