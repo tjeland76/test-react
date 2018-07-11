@@ -105,10 +105,36 @@ app.get('/newsitem', function(req, res){
     // res.send(newsResponse);
 
 });
-  
-  
+
+  app.get('/page', function(req, res){
+    const pageId = req.query.pageId;
+
+    request({
+      uri: `http://content.onesocialmama.com/json/pages/${pageId}`,
+      json: true
+    }, function(error, response, body) {
+      res.send(body);
+    });
+
+    // const newsId = req.query.id;
+    // let newsItem = null;
+    //
+    // if (newsId) {
+    //     const newsArrayCopy = clone(newsData.newsData);
+    //     newsItem = newsArrayCopy.find(x => x.id === parseInt(newsId));
+    // }
+    //
+    // const newsResponse = {
+    //     newsData: newsItem
+    // };
+    //
+    // res.send(newsResponse);
+
+  });
+
+
 app.post('/send-contact', urlencodedParser, (req, res) => {
-    
+
     if (!req.body) return res.sendStatus(400);
     else {
         for(let form in req.body){
@@ -122,7 +148,7 @@ app.post('/send-contact', urlencodedParser, (req, res) => {
                 res.sendStatus(400);
                 //res.end('It failed');
             });
-            
+
         }
     }
 

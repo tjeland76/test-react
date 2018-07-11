@@ -7,7 +7,6 @@ import Training from './training/TrainingPage';
 import Records from './records/RecordsPage';
 import Results from './results/ResultsPage';
 import ContactUs from './contactus/ContactUsPage';
-import About from './about/AboutPage';
 import Courses from './courses/CoursesPage';
 import News from './news/NewsPage';
 
@@ -27,7 +26,6 @@ const Main = () => (
       <Route path="/records" component={Records}/>
       <Route path="/results" component={Results}/>
       <Route path="/contactus" component={ContactUs}/>
-      <Route path="/about" component={About}/>
       <Route path="/courses" component={Courses}/>
     </Switch>
   </main>
