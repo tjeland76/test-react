@@ -350,6 +350,9 @@ nav {
   .homeNewsItem .homeNewsDetails .homeNewsStory {
     padding: 0 0 15px; } }
 
+.pageImage {
+  padding-bottom: 20px; }
+
 /* Desktop view */
 @media (min-width: 992px) {
   html, body {
