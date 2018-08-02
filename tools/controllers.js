@@ -1,6 +1,6 @@
 import mailer from './mailer';
 import bodyParser from 'body-parser';
-import newsData from '../src/services/newsData.js';
+//import newsData from '../src/services/newsData.js';
 import clone from 'clone';
 import request from 'request';
 

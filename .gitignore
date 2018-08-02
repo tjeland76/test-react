@@ -1,4 +1,5 @@
 node_modules/
 dist/
+server/
 npm-debug*
 .idea/workspace.xml

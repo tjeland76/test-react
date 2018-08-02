@@ -6,17 +6,17 @@ import compression from 'compression';
 /*eslint-disable no-console */
 
 
-const port = process.env.PORT || 68000;
+const port = process.env.PORT || 58000;
 const app = express();
 
 app.use(compression());
-app.use(express.static('dist'));
+app.use(express.static('server/dist'));
 
 const controllers = require('./controllers');
 controllers.set(app);
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 app.listen(port, function(err) {
