@@ -77,7 +77,7 @@ export default {
   module: {
     loaders: [
       {test: /\.json$/, loader: 'json-loader'},
-      {test: /\.js$/, include: [path.join(__dirname, '../src'),path.join(__dirname, 'node_modules/nodemailer')], loaders: ['babel-loader']},
+      {test: /\.js$/, include: [path.join(__dirname, '../src'),path.join(__dirname, '../node_modules/nodemailer')], loaders: ['babel-loader']},
       {test: /(\.css)$/, loader: 'css-loader'},
       { test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
       //{test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file?name=[name].[ext]'},
