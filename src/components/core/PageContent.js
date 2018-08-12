@@ -47,10 +47,14 @@ console.log(resp.data.attributes);
       return loader;
     }
 
+    const regex = /<a href=\"\/files\//gi;
+    const pageBody = this.state.pageContent.body.replace(regex, '<a href=\"http://content.onesocialmama.com/files/');
+    //console.log(this.state.pageContent.body.replace(regex, '<a href=\"http://content.onesocialmama.com/files/'));
+
     return (
       <div>
         <div className="pageImage" style={{display: this.state.pageContent.image.url ? 'block' : 'none' }}><img src={this.state.pageContent.image.url} /></div>
-      <div dangerouslySetInnerHTML={{__html: this.state.pageContent.body}}/>
+      <div dangerouslySetInnerHTML={{__html: pageBody}}/>
       </div>
     );
   }
