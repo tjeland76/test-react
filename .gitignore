@@ -3,3 +3,4 @@ dist/
 server/
 npm-debug*
 .idea/
+tools/mailer/config/

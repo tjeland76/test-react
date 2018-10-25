@@ -1,30 +1,16 @@
 import nodemailer from 'nodemailer';
 import config from './config';
 
-//const transporter = nodemailer.createTransport({
-//  service: 'Gmail',
-//  host: 'smtp.gmail.com',
-//  port: 465,
-//  secure: true,
-//  auth: {
-//    type: 'OAuth2',
-//    user: config.user,
-//    clientId: config.clientId,
-//    clientSecret: config.clientSecret,
-//    refreshToken: config.refreshToken,
-//    accessToken: config.accessToken
-//  }
-//});
-
-const transporter = nodemailer.createTransport({
-  //host: 'smtp.gmail.com',
-  service: 'Gmail',
-  //port: 465,
-  //secure: true,
+const transporter =  nodemailer.createTransport({
+  host: config.host, // hostname
+  secureConnection: false, // TLS requires secureConnection to be false
+  port: config.port, // port for secure SMTP
+  tls: {
+    ciphers:'SSLv3'
+  },
   auth: {
-    type: 'OAuth2',
-    user: config.user,
-    ...config
+    user: config.email,
+    pass: config.password
   }
 });
 
@@ -32,7 +18,7 @@ const send = ({ email, name, text }) => {
 
   const message = {
     from: email,
-    to: 'warringtonmasters@gmail.com',
+    to: config.email,
     subject: `New message from ${name} on warringtonmasters.co.uk`,
     text
   };
@@ -41,12 +27,12 @@ const send = ({ email, name, text }) => {
 
   return new Promise((resolve, reject) => {
     transporter.sendMail(message, (error, info) => {
-        if (error) {
-            console.log(error);
-            reject(error);
-        } else {
-            resolve(info);
-        }
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        resolve(info);
+      }
 
     });
   });
