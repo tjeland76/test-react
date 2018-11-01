@@ -15,7 +15,6 @@
     "build-server": "babel tools -d server",
     "clean-dist": "npm run remove-dist && mkdir server",
     "remove-dist": "node_modules/.bin/rimraf ./server",
-    "build:html": "node server/buildHtml.js",
     "build": "node server/build.js",
     "postbuild": "node server/distServer.js"
   },
@@ -86,7 +85,7 @@
     "jsdom": "8.5.0",
     "mocha": "2.4.5",
     "nock": "8.0.0",
-    "npm-run-all": "1.8.0",
+    "npm-run-all": "^1.8.0",
     "react-addons-test-utils": "15.0.2",
     "redux-mock-store": "1.0.2",
     "toastr": "2.1.2",

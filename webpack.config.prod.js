@@ -57,14 +57,16 @@ export default {
         safari10: false
       }
     }),
-    new CopyWebpackPlugin([{
-      from: 'src/robots.txt'
+    new CopyWebpackPlugin([
+      {
+        from: 'src/robots.txt'
       },
       {
         from: 'src/sitemap.xml'
       },{
         from: 'src/google7a78dba6037d73cb.html'
-      }])
+      }
+    ])
     //new ExtractTextPlugin({filename: 'public/style.css', allChunks: true})
   ],
   node: {
