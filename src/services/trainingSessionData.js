@@ -6,7 +6,11 @@ const poolMapData = {
   woolston: {
       center: {lat: 53.399685, lng: -2.534278},
       zoom: 14
-    }
+    },
+  sankey: {
+      center: {lat: 53.4011585, lng: -2.6617699},
+      zoom: 14
+  }
 };
 
 const trainingSessionData = [
@@ -15,23 +19,23 @@ const trainingSessionData = [
     label:'Sunday',
     location:'Orford Jubilee',
     time: '6 - 8pm',
-    coach: 'Russ',
+    coach: 'Rob',
     map: poolMapData.orford
   },
   {
     day:1,
     label:'Monday',
-    location:'Woolston Neighbourhood Hub',
+    location:'Great Sankey Neighbourhood Hub',
     time: '9 - 10pm',
-    coach: 'Jonathan',
-    map: poolMapData.woolston
+    coach: 'Rob',
+    map: poolMapData.sankey
   },
   {
     day:2,
     label:'Tuesday',
     location:'Woolston Neighbourhood Hub',
     time: '9 - 10pm',
-    coach: 'Paul',
+    coach: 'Tim',
     map: poolMapData.woolston
   },
   {
@@ -39,7 +43,7 @@ const trainingSessionData = [
     label:'Wednesday',
     location:'Orford Jubilee',
     time: '9 - 10pm',
-    coach: 'Jonathan',
+    coach: 'Rob',
     map: poolMapData.orford
   },
   {
@@ -47,7 +51,7 @@ const trainingSessionData = [
     label:'Friday',
     location:'Orford Jubilee',
     time: '8 - 10pm',
-    coach: 'Paul',
+    coach: 'Rob',
     map: poolMapData.orford
   }
 ];
