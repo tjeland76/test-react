@@ -526,9 +526,7 @@ nav {
       vertical-align: top;
       padding: 0 0 0 15px;
       .homeNewsStory {
-        -webkit-line-clamp: $desktop-home-new-item-lines-limit;
         -webkit-box-orient: vertical;
-        overflow: hidden;
         text-overflow: ellipsis;
         display: block; /* Fallback for non-webkit */
         display: -webkit-box;
